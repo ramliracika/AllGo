@@ -19,10 +19,8 @@ func TestQuery(t *testing.T) {
 		panic(err)
 	}
 
-	fmt.Println("Succes Insert Data to Mahasiswa")
-
 	defer rows.Close()
-
+	fmt.Println("Succes Get Data From Database")
 	for rows.Next() {
 		var npm int64
 		var nama string
@@ -36,5 +34,5 @@ func TestQuery(t *testing.T) {
 		fmt.Println("NAMA :", nama)
 
 	}
-
+	fmt.Println("Finished Get Data From Database")
 }
