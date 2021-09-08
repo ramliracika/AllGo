@@ -14,7 +14,7 @@ func TestQuery(t *testing.T) {
 
 	script := "SELECT NPM,NAMA From Mahasiswa;"
 
-	rows, err := db.QueryContext(ctx, script) // to execute query sql without show data
+	rows, err := db.QueryContext(ctx, script) // to execute query show data
 	if err != nil {
 		panic(err)
 	}
