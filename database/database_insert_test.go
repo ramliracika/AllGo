@@ -12,7 +12,7 @@ func TestInsert(t *testing.T) {
 
 	script := "INSERT INTO mahasiswa(NPM,NAMA) VALUES('201743502427','Ramli Racika');"
 
-	_, err := db.ExecContext(ctx, script)
+	_, err := db.ExecContext(ctx, script) // to execute query sql without show data
 	if err != nil {
 		panic(err)
 	}
