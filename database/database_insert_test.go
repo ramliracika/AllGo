@@ -32,6 +32,23 @@ func TestMultiInsert(t *testing.T) {
 		panic(err)
 	}
 
-	fmt.Println("Succes Insert Data to Mahasiswa")
+	fmt.Println("Succes Insert Data to Customer")
+
+}
+
+func TestSafeInsert(t *testing.T) {
+	db := GetConnet()
+	ctx := context.Background()
+	username := "admin2"
+	password := "admin2"
+
+	script := "INSERT INTO User(username,password) Values (? , ?);"
+
+	_, err := db.ExecContext(ctx, script, username, password) // to execute query sql without show data
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Succes Insert Data to User")
 
 }
