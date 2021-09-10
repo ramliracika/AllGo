@@ -11,7 +11,7 @@ func TestTransaction(t *testing.T) {
 	db := GetConnet()
 	ctx := context.Background()
 
-	tx, err := db.Begin()
+	tx, err := db.Begin() // begin transaction
 	if err != nil {
 		panic(err)
 	}
