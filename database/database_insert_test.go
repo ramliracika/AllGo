@@ -3,6 +3,7 @@ package database
 import (
 	"context"
 	"fmt"
+	"strconv"
 	"testing"
 )
 
@@ -66,11 +67,39 @@ func TestInsertIncement(t *testing.T) {
 		panic(err)
 	}
 
-	insertId, err := result.LastInsertId()
+	insertId, err := result.LastInsertId() // to get last insert id auto incement
 	if err != nil {
 		panic(err)
 	}
 
 	fmt.Println("Succes Insert Data to Id", insertId)
 
+}
+
+func TestPrepare(t *testing.T) {
+	db := GetConnet()
+	ctx := context.Background()
+	script := "INSERT INTO Comment(email,content) Values (? , ?);"
+
+	statement, err := db.PrepareContext(ctx, script) // to execute query sql without show data
+	if err != nil {
+		panic(err)
+	}
+	for i := 1; i < 10; i++ {
+		email := "ramliracika" + strconv.Itoa(i) + "@gmail.com"
+		content := "info yang bagus" + strconv.Itoa(i)
+
+		statement, err := statement.ExecContext(ctx, email, content) // to execute query sql without show data
+		if err != nil {
+			panic(err)
+		}
+
+		insertId, err := statement.LastInsertId() // to get last insert id auto incement
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Println("Succes Insert Data to Id", insertId)
+	}
+	defer statement.Close()
 }
