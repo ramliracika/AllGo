@@ -52,3 +52,25 @@ func TestSafeInsert(t *testing.T) {
 	fmt.Println("Succes Insert Data to User")
 
 }
+
+func TestInsertIncement(t *testing.T) {
+	db := GetConnet()
+	ctx := context.Background()
+	email := "ramliracika@gmail.com"
+	content := "info yang bagus"
+
+	script := "INSERT INTO Comment(email,content) Values (? , ?);"
+
+	result, err := db.ExecContext(ctx, script, email, content) // to execute query sql without show data
+	if err != nil {
+		panic(err)
+	}
+
+	insertId, err := result.LastInsertId()
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Succes Insert Data to Id", insertId)
+
+}
