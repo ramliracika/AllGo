@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Title}}</title>
+</head>
+<body>
+{{/*Commentar Example*/}}
+<h1>{{.Name}}</h1>
+{{with .Address}}
+    <h1>City {{.City}}</h1> <br>
+    <h1>Street {{.Street}}</h1>
+{{else}}
+    <h1>Anda belum memiliki alamat</h1>
+{{end}}
+</body>
+</html>
